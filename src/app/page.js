@@ -1,13 +1,15 @@
 import PetBanner from "@/components/Banner";
+import SuccessStoriesPage from "@/components/SuccessStories";
 import WhyAdoptPets from "@/components/WhyAdoptPets";
 import Image from "next/image";
 
 export default function Home() {
   return (
     <div>
-     Home page
      <PetBanner/>
+        Home page
      <WhyAdoptPets/>
+     <SuccessStoriesPage/>
     </div>
   );
 }

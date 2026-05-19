@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const PetHero = () => {
   return (
-    <section className="w-full mt-8 bg-gradient-to-r from-[#0F172A] via-[#111827] to-[#0B1220] py-16">
+    <section className="w-full bg-gradient-to-r from-[#0F172A] via-[#111827] to-[#0B1220] py-16">
 
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 
       lg:grid-cols-2 gap-10 items-center">
