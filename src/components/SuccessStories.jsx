@@ -2,118 +2,170 @@
 
 const SuccessStoriesPage = () => {
   return (
-    <section className="h-[90vh] bg-gradient-to-b from-white via-gray-50 to-gray-100 py-20 px-4 sm:px-6 lg:px-8">
+    <div className=" min-h-screen  bg-[#FFF9F5] py-14 sm:py-20
+     px-4 sm:px-6 lg:px-8 overflow-x-hidden
+     ">
+      <div className="max-w-7xl mx-auto">
+        {/* HEADER + STATS (FIXED GRID INSTEAD OF FLEX) */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start
+        ">
+          {/* LEFT */}
+          <div className="w-full min-w-0">
+            <span className="inline-block bg-orange-100 text-orange-700
+             px-4 py-2 rounded-full text-xs sm:text-sm font-semibold
+             ">
+              Happy Adoption Journeys
+            </span>
+            <h1 className="mt-5 text-3xl sm:text-4xl lg:text-5xl
+             font-bold text-gray-900 leading-tight break-words
+             ">
+              Stories That <br className="hidden sm:block" />
+              <span className="text-orange-600">
+                Changed Lives
+              </span>
+            </h1>
 
-      <div className="max-w-6xl mx-auto">
+            <p className="mt-5 text-gray-600 text-sm 
+            sm:text-base leading-relaxed break-words
+            ">
+              Every rescued pet carries a story of hope, healing, and love.
+              These families opened their hearts and transformed lives forever.
+            </p>
+          </div>
 
-        {/* HEADER */}
-        <div className="text-center max-w-3xl mx-auto">
+          {/* RIGHT STATS */}
+          <div className="grid grid-cols-2 gap-4 w-full">
+            <div className="bg-white rounded-2xl p-5 
+            sm:p-6 shadow border border-orange-100
+            ">
+              <h2 className="text-2xl sm:text-3xl 
+              font-bold text-orange-600">
+                1.5K+
+              </h2>
+              <p className="mt-2 text-sm text-gray-600">
+                Pets Rehomed
+              </p>
+            </div>
 
-          <span className="text-orange-600 text-sm font-semibold uppercase tracking-wide">
-            Real Impact Stories
-          </span>
-
-          <h1 className="mt-3 text-4xl sm:text-5xl font-bold text-gray-900">
-            Success <span className="text-orange-600">Stories</span>
-          </h1>
-
-          <p className="mt-5 text-gray-600 text-sm sm:text-base leading-relaxed">
-            Every adoption has a story. These are real journeys of hope,
-            healing, and unconditional love.
-          </p>
-
+            <div className="bg-white rounded-2xl p-5 
+              sm:p-6 shadow border border-orange-100">
+              <h2 className="text-2xl sm:text-3xl font-bold text-orange-600">
+                98%
+              </h2>
+              <p className="mt-2 text-sm text-gray-600">
+                Adoption Success
+              </p>
+            </div>
+          </div>
         </div>
 
-        {/* STORY GRID */}
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
-
+        {/* STORIES */}
+        <div className="mt-14 sm:mt-20 space-y-8">
           {/* CARD 1 */}
-          <div className="group bg-white border border-gray-100 rounded-2xl p-6 shadow-sm hover:shadow-xl transition duration-300 relative overflow-hidden">
+          <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-lg border
+           border-orange-100 grid grid-cols-1 lg:grid-cols-[300px_1fr]
+            gap-6 items-center
+            ">
+            <div className="h-[220px] bg-orange-100 rounded-2xl
+             flex items-center justify-center text-6xl
+             ">
+              🐶
+            </div>
 
-            <span className="inline-block text-xs font-medium bg-orange-100 text-orange-700 px-3 py-1 rounded-full">
-              Rescue Story
-            </span>
-
-            <h2 className="mt-4 text-lg font-bold text-gray-900 group-hover:text-orange-600 transition">
-              Bella & Ahmed
-            </h2>
-
-            <p className="mt-3 text-sm text-gray-600 leading-relaxed">
-              Bella was rescued from the street and now lives happily with Ahmed’s family.
-            </p>
-
-            <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-orange-100 rounded-full blur-2xl opacity-40"></div>
-
+            <div className="min-w-0">
+              <span className="inline-block bg-orange-100 text-orange-700
+               text-xs px-3 py-1 rounded-full font-semibold">
+                Rescue Story
+              </span>
+              <h2 className="mt-4 text-2xl font-bold text-gray-900 break-words">
+                Bella & Ahmed
+              </h2>
+              <p className="mt-3 text-gray-600 text-sm sm:text-base
+                  leading-relaxed break-words">
+                Bella was rescued from the streets during a storm and now lives happily with Ahmed’s family.
+              </p>
+            </div>
           </div>
 
           {/* CARD 2 */}
-          <div className="group bg-white border border-gray-100 rounded-2xl p-6 shadow-sm hover:shadow-xl transition duration-300 relative overflow-hidden">
+          <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-lg border
+           border-orange-100 grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-6 items-center
+           ">
 
-            <span className="inline-block text-xs font-medium bg-orange-100 text-orange-700 px-3 py-1 rounded-full">
-              Adoption Success
-            </span>
+            <div className="min-w-0">
+              <span className="inline-block bg-orange-100 text-orange-700
+               text-xs px-3 py-1 rounded-full font-semibold
+               ">
+                Adoption Success
+              </span>
+              <h2 className="mt-4 text-2xl font-bold text-gray-900 break-words">
+                Max & Sarah
+              </h2>
+              <p className="mt-3 text-gray-600 text-sm 
+              sm:text-base leading-relaxed break-words
+              ">
+                Max finally found his forever home after months in shelter care.
+              </p>
+            </div>
 
-            <h2 className="mt-4 text-lg font-bold text-gray-900 group-hover:text-orange-600 transition">
-              Max & Sarah
-            </h2>
-
-            <p className="mt-3 text-sm text-gray-600 leading-relaxed">
-              After months in shelter care, Max finally found his forever home.
-            </p>
-
-            <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-orange-100 rounded-full blur-2xl opacity-40"></div>
-
+            <div className="h-[220px] bg-orange-100 rounded-2xl
+             flex items-center justify-center text-6xl
+             ">
+              🐱
+            </div>
           </div>
 
           {/* CARD 3 */}
-          <div className="group bg-white border border-gray-100 rounded-2xl p-6 shadow-sm hover:shadow-xl transition duration-300 relative overflow-hidden">
+          <div className="bg-white rounded-3xl p-6 sm:p-8 
+          shadow-lg border border-orange-100 grid grid-cols-1
+           lg:grid-cols-[300px_1fr] gap-6 items-center
+           ">
+            <div className="h-[220px] bg-orange-100 rounded-2xl
+             flex items-center justify-center text-6xl
+         ">
+              🐾
+           </div>
 
-            <span className="inline-block text-xs font-medium bg-orange-100 text-orange-700 px-3 py-1 rounded-full">
-              Happy Ending
-            </span>
-
-            <h2 className="mt-4 text-lg font-bold text-gray-900 group-hover:text-orange-600 transition">
-              Luna & Family
-            </h2>
-
-            <p className="mt-3 text-sm text-gray-600 leading-relaxed">
-              Luna brings daily joy, love, and energy to her new family.
-            </p>
-
-            <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-orange-100 rounded-full blur-2xl opacity-40"></div>
-
+            <div className="min-w-0">
+              <span className="inline-block bg-orange-100 text-orange-700
+               text-xs px-3 py-1 rounded-full font-semibold">
+                Happy Ending
+              </span>
+              <h2 className="mt-4 text-2xl font-bold text-gray-900 break-words">
+                Luna & Family
+              </h2>
+              <p className="mt-3 text-gray-600 text-sm 
+              sm:text-base leading-relaxed break-words">
+                Luna brings joy and love to her new family every single day.
+              </p>
+            </div>
           </div>
-
         </div>
 
-        {/* CTA SECTION */}
-        <div className="mt-20 bg-orange-50 border border-orange-100 rounded-3xl p-10 text-center">
-
-          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
-            Want to Create Another Success Story? 🐾
+        {/* CTA */}
+        <div className="mt-20 bg-orange-600 rounded-3xl
+         px-6 sm:px-10 py-12 text-center text-white
+         ">
+          <h2 className="text-2xl sm:text-4xl font-bold leading-tight">
+            Be Part of the Next Success Story 🐾
           </h2>
-
-          <p className="mt-4 text-sm sm:text-base text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            Your adoption can change a life forever. Be the reason a pet finds
-            happiness, comfort, and a loving family.
+          <p className="mt-4 text-sm sm:text-base
+           text-orange-100 max-w-2xl mx-auto">
+            Open your heart to a rescued pet and create a lifetime of love.
           </p>
-
           <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
-
-            <button className="bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 rounded-full font-medium transition">
-              Adopt Now
+            <button className="bg-white text-orange-600
+             px-6 py-3 rounded-full font-semibold">
+              Adopt Today
             </button>
-
-            <button className="bg-white border border-gray-300 hover:bg-gray-100 text-gray-800 px-6 py-3 rounded-full font-medium transition">
-              Share Your Story
+            <button className="border border-white 
+            px-6 py-3 rounded-full font-semibold">
+              Share Story
             </button>
-
           </div>
-
         </div>
-
       </div>
-    </section>
+    </div>
   );
 };
 

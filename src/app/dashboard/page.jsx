@@ -13,7 +13,7 @@ export default function DashboardLayout({ children }) {
   const { data: session } = authClient.useSession();
   const user = session?.user;
 
-  // যদি user না থাকে → dashboard block
+
   useEffect(() => {
     if (!user) router.push("/login");
   }, [user]);
@@ -28,7 +28,9 @@ export default function DashboardLayout({ children }) {
     <div className="flex min-h-screen bg-gray-100">
 
       {/* MOBILE TOP BAR */}
-      <div className="md:hidden fixed top-0 w-full bg-slate-900 text-white p-4 flex justify-between">
+      <div className="md:hidden fixed top-0 w-full
+       bg-slate-900 text-white p-4 flex justify-between
+       ">
         <h2>Dashboard</h2>
         <button onClick={() => setOpenSidebar(true)}>☰</button>
       </div>

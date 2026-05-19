@@ -30,35 +30,36 @@ const Navbar = () => {
       : "flex items-center gap-2 text-gray-600 hover:text-emerald-600";
 
   return (
-    <div className="border-b sticky top-0 z-50 bg-white shadow-sm">
-      <nav className="flex items-center justify-between max-w-7xl mx-auto p-3">
+    <div className="border-b sticky top-0 z-50
+     bg-white shadow-sm
+     ">
+      <nav className="flex items-center
+       justify-between max-w-7xl mx-auto p-3
+       ">
 
         {/* LEFT - LOGO */}
         <div className="flex items-center gap-2">
           <Image src={petLogo} alt="logo" width={45} height={45} />
-          <h2 className="font-bold text-xl text-emerald-700">
+          <h2 className="font-bold text-xl
+           text-emerald-700">
             PetWorld
           </h2>
         </div>
 
         {/* CENTER - MENU */}
         <div className="hidden md:flex gap-6 items-center">
-
           <Link className={linkStyle("/")} href="/">
             <FaHome />
             <span>Home</span>
           </Link>
-
           <Link className={linkStyle("/all-pets")} href="/all-pets">
             <IoSearchOutline />
             <span>All-Pets</span>
           </Link>
-
         </div>
 
         {/* RIGHT - AUTH */}
         <div className="flex items-center gap-4">
-
           {!user && (
             <>
               <Link
@@ -67,7 +68,6 @@ const Navbar = () => {
               >
                 Login
               </Link>
-
               <Link
                 href="/register"
                 className="bg-emerald-600 text-white px-3 py-2 rounded-lg"
@@ -90,7 +90,9 @@ const Navbar = () => {
               </button>
 
               {dropdown && (
-                <div className="absolute right-0 mt-2 w-40 bg-white shadow-lg rounded-lg overflow-hidden">
+                <div className="absolute right-0 mt-2 w-40 bg-white
+                 shadow-lg rounded-lg overflow-hidden
+                 ">
                   <button
                     onClick={() => router.push("/dashboard/my-requests")}
                     className="w-full text-left px-4 py-2 hover:bg-gray-100"
@@ -100,14 +102,17 @@ const Navbar = () => {
 
                   <button
                     onClick={handleLogout}
-                    className="w-full text-left px-4 py-2 hover:bg-red-100 text-red-600"
+                    className="w-full text-left px-4 py-2
+                     hover:bg-red-100 text-red-600"
                   >
                     Logout
                   </button>
                 </div>
               )}
+              
             </div>
           )}
+
         </div>
       </nav>
     </div>
