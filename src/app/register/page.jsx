@@ -18,18 +18,22 @@ import { useRouter } from "next/navigation";
 
 const RegisterPage = () => {
   const router = useRouter();
-  const [isShowPassword, setIsShowPassword] = useState(false);
 
-  // ✅ Submit handler
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
+
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    const name = e.target.name.value;
-    const email = e.target.email.value;
-    const photo = e.target.photo.value;
-    const password = e.target.password.value;
-    const confirmPassword = e.target.confirmPassword.value;
+  const formData = new FormData(e.currentTarget);
+const user = Object.fromEntries(formData.entries());
 
+const { name, email, photo } = user;
+
+    // 🔴 validation
     if (password.length < 6) {
       return toast.error("Password must be at least 6 characters");
     }
@@ -39,7 +43,6 @@ const RegisterPage = () => {
     if (!/[a-z]/.test(password)) {
       return toast.error("Password must have 1 lowercase letter");
     }
-
 
     if (password !== confirmPassword) {
       return toast.error("Passwords do not match");
@@ -69,57 +72,42 @@ const RegisterPage = () => {
         {/* Name */}
         <TextField isRequired name="name">
           <Label>Name</Label>
-          <Input placeholder="Enter your name" />
+          <Input name="name" placeholder="Enter your name" />
           <FieldError />
         </TextField>
 
         {/* Email */}
-        <TextField
-          isRequired
-          name="email"
-          type="email"
-          validate={(value) => {
-            if (
-              !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)
-            ) {
-              return "Please enter a valid email address";
-            }
-            return null;
-          }}
-        >
+        <TextField isRequired name="email">
           <Label>Email</Label>
-          <Input placeholder="Enter your email" />
+          <Input name="email" type="email" placeholder="Enter your email" />
           <FieldError />
         </TextField>
 
-        {/* Photo URL */}
+        {/* Photo */}
         <TextField isRequired name="photo">
           <Label>Photo URL</Label>
-          <Input placeholder="Enter photo URL" />
+          <Input name="photo" placeholder="Enter photo URL" />
           <FieldError />
         </TextField>
 
         {/* Password */}
         <div className="relative">
-          <TextField
-            isRequired
-            name="password"
-            type={isShowPassword ? "text" : "password"}
-            validate={(value) => {
-              if (value.length < 6) return "Min 6 characters required";
-              if (!/[A-Z]/.test(value)) return "Need 1 uppercase letter";
-              if (!/[a-z]/.test(value)) return "Need 1 lowercase letter";
-              return null;
-            }}
-          >
+          <TextField isRequired name="password">
             <Label>Password</Label>
-            <Input placeholder="Enter password" className="pr-10" />
+            <Input
+              name="password"
+              type={showPassword ? "text" : "password"}
+              placeholder="Enter password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="pr-10"
+            />
 
             <span
-              className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer"
-              onClick={() => setIsShowPassword(!isShowPassword)}
+              className="absolute right-3 top-9 cursor-pointer"
+              onClick={() => setShowPassword(!showPassword)}
             >
-              {isShowPassword ? <FaEye /> : <FaEyeSlash />}
+              {showPassword ? <FaEye /> : <FaEyeSlash />}
             </span>
 
             <Description>
@@ -131,23 +119,28 @@ const RegisterPage = () => {
         </div>
 
         {/* Confirm Password */}
-        <TextField
-          isRequired
-          name="confirmPassword"
-          type={isShowPassword ? "text" : "password"}
-          validate={(value, form) => {
-            const password = form?.password?.value;
+        <div className="relative">
+          <TextField isRequired name="confirmPassword">
+            <Label>Confirm Password</Label>
+            <Input
+              name="confirmPassword"
+              type={showConfirm ? "text" : "password"}
+              placeholder="Confirm password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              className="pr-10"
+            />
 
-            if (value !== password) {
-              return "Passwords do not match";
-            }
-            return null;
-          }}
-        >
-          <Label>Confirm Password</Label>
-          <Input placeholder="Confirm password" />
-          <FieldError />
-        </TextField>
+            <span
+              className="absolute right-3 top-9 cursor-pointer"
+              onClick={() => setShowConfirm(!showConfirm)}
+            >
+              {showConfirm ? <FaEye /> : <FaEyeSlash />}
+            </span>
+
+            <FieldError />
+          </TextField>
+        </div>
 
         {/* Button */}
         <button className="w-full bg-blue-500 hover:bg-blue-600 transition p-2 rounded-full text-white font-medium">
@@ -155,7 +148,6 @@ const RegisterPage = () => {
         </button>
       </Form>
 
-      {/* Login link */}
       <p className="text-center text-sm mt-4">
         Already have an account?{" "}
         <Link href="/login" className="text-orange-500">
@@ -166,4 +158,4 @@ const RegisterPage = () => {
   );
 };
 
-export default RegisterPage; 
+export default RegisterPage;

@@ -4,9 +4,11 @@ import { authClient } from "@/lib/auth-client";
 import { Avatar } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
-import petLogo from '../../public/asset/pet-care-logo-2.webp'
-import { usePathname, useRouter } from "next/navigation";
+import petLogo from "../../public/asset/pet-care-logo-2.webp";
+import { redirect, usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
+import { FaHome } from "react-icons/fa";
+import { IoSearchOutline } from "react-icons/io5";
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -19,13 +21,13 @@ const Navbar = () => {
   const handleLogout = async () => {
     await authClient.signOut();
     setDropdown(false);
-    router.push("/");
+  redirect("/");
   };
 
   const linkStyle = (path) =>
     pathname === path
-      ? "text-white bg-emerald-700 px-3 py-2 rounded-lg"
-      : "text-gray-600 hover:text-emerald-600";
+      ? "flex items-center gap-2 text-white bg-emerald-700 px-3 py-2 rounded-lg"
+      : "flex items-center gap-2 text-gray-600 hover:text-emerald-600";
 
   return (
     <div className="border-b sticky top-0 z-50 bg-white shadow-sm">
@@ -41,13 +43,17 @@ const Navbar = () => {
 
         {/* CENTER - MENU */}
         <div className="hidden md:flex gap-6 items-center">
+
           <Link className={linkStyle("/")} href="/">
-            Home
+            <FaHome />
+            <span>Home</span>
           </Link>
 
           <Link className={linkStyle("/all-pets")} href="/all-pets">
-            All Pets
+            <IoSearchOutline />
+            <span>All-Pets</span>
           </Link>
+
         </div>
 
         {/* RIGHT - AUTH */}
@@ -55,7 +61,10 @@ const Navbar = () => {
 
           {!user && (
             <>
-              <Link href="/login" className="text-gray-600 hover:text-emerald-600">
+              <Link
+                href="/login"
+                className="text-gray-600 hover:text-emerald-600"
+              >
                 Login
               </Link>
 
@@ -68,7 +77,7 @@ const Navbar = () => {
             </>
           )}
 
-          {/* USER DROPDOWN */}
+          {/* USER */}
           {user && (
             <div className="relative">
               <button onClick={() => setDropdown(!dropdown)}>
@@ -100,7 +109,6 @@ const Navbar = () => {
             </div>
           )}
         </div>
-
       </nav>
     </div>
   );

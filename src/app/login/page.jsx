@@ -11,18 +11,20 @@ import { toast } from "react-toastify";
 
 const LogInPage = () => {
 
-   const searchParams = useSearchParams();
-   const redirect = searchParams.get("redirect") || "/";
+  //  const searchParams = useSearchParams();
+  //  const redirect = searchParams.get("redirect") || "/";
 
    const onSubmit = async(e) =>{
       e.preventDefault()
 
-     const email = e.target.email.value;
-    const password = e.target.password.value;
+    //  const email = e.target.email.value;
+    // const password = e.target.password.value;
+       const formData = new FormData(e.currentTarget);
+     const user = Object.fromEntries(formData.entries())
      
      const {data, error} = await authClient.signIn.email({
-            email,
-            password,
+            email: user.email,
+            password: user.password,
             callbackURL: redirect,
         })
            console.log({data, error})
@@ -35,10 +37,10 @@ const LogInPage = () => {
 
     const handleGooleLogin = async () => {
 
-       const {data , error} = await authClient.signIn.social({
-        provider: "google",
-        callbackURL: redirect,
-  });
+  //      const {data , error} = await authClient.signIn.social({
+  //       provider: "google",
+  //       callbackURL: redirect,
+  // });
         console.log(data , 'data');
          if (error) {
         toast.error ("Google login failed");
