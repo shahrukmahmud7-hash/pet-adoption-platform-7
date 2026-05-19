@@ -1,11 +1,10 @@
 "use client";
 
-import Link from "next/link";
 
 const WhyAdoptPets = () => {
   return (
-    <section className=" bg-gradient-to-r from-[#0F172A] via-[#111827] to-[#0B1220]
-       min-h-screen  mt-6 px-4 sm:px-6 lg:px-8">
+    <section className=" bg-gradient-to-r  bg-gradient-to-b from-white via-gray-50 to-gray-100 py-20
+       h-[90vh]  mt-6 px-4 sm:px-6 lg:px-8">
 
       <div className="max-w-6xl mx-auto">
 

@@ -6,7 +6,7 @@ import Image from "next/image";
 
 const Footer = () => {
   return (
-    <footer className="mt-16 bg-gradient-to-r from-[#0F172A] via-[#111827] to-[#0B1220] text-white">
+    <footer className="bg-gradient-to-r from-[#0F172A] via-[#111827] to-[#0B1220] text-white">
 
       <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
 
@@ -51,6 +51,8 @@ const Footer = () => {
             <p>Share a Pet</p>
             <p>Adoption Requests</p>
             <p>Your Pet Posts</p>
+            <p>My Paw Listings</p>
+           
           </div>
         </div>
 
@@ -59,9 +61,10 @@ const Footer = () => {
           <h3 className="font-semibold mb-3">Company</h3>
           <div className="space-y-2 text-sm text-gray-300">
             <p>About Us</p>
-            <p>Careers</p>
-            <p>Press</p>
-            <p>Blog</p>
+            <p>Pet Adoption</p>
+            <p>Success Stories</p>
+            <p>Support & Care</p>
+            <p>Get in Touch</p>
           </div>
         </div>
 

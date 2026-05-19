@@ -5,8 +5,8 @@ import Image from "next/image";
 
 const images = [
   "/asset/banner1.jpg",
-  "/asset/banner2.jpg",
-  "/asset/tom.jpg",
+  "/asset/dog-2.avif",
+  "/asset/cat-dog.avif",
 
 ];
 
@@ -40,7 +40,7 @@ const HeroSliderImage = () => {
         alt="pet banner"
         fill
         priority
-        className={`object-cover scale-110 
+        className={`object-fill scale-110 
         transition-all duration-700 ease-in-out ${
           fade ? "opacity-100" : "opacity-0"
         }`}
