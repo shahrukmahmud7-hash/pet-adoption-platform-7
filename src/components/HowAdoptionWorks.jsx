@@ -4,7 +4,11 @@ const HowAdoptionWorks = () => {
   return (
     <div className="min-h-screen bg-[#FFF8F3] py-16
      sm:py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-
+         <div className="flex justify-start px-72 mb-16">
+         <h1 className="text-3xl sm:text-4xl font-bold text-center text-gray-900">
+          How <span className="text-orange-600">Adoption Works</span>
+        </h1>
+         </div>
       <div className="max-w-7xl mx-auto">
 
         {/* TOP SECTION */}
