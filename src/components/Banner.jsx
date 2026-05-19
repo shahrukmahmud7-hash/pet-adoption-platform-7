@@ -5,15 +5,17 @@ import Link from "next/link";
 
 const PetHero = () => {
   return (
-    <section className="w-full bg-gradient-to-r from-[#0F172A] via-[#111827] to-[#0B1220] py-16">
+    <section className="w-full mt-8 bg-gradient-to-r from-[#0F172A] via-[#111827] to-[#0B1220] py-16">
 
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 
+      lg:grid-cols-2 gap-10 items-center">
 
         {/* LEFT - SLIDER */}
         <HeroSliderImage />
 
         {/* RIGHT BANNER */}
-        <div className="bg-gradient-to-br from-white via-gray-50 to-gray-100 rounded-2xl p-10 shadow-lg border border-gray-200">
+        <div className="bg-gradient-to-br from-white via-gray-50
+         to-gray-100 rounded-2xl p-10 shadow-lg border border-gray-200">
 
           <h1 className="text-4xl font-bold leading-snug text-gray-900">
             Give a Pet a <br />
@@ -34,19 +36,21 @@ const PetHero = () => {
           </div>
 
           <div className="mt-8 flex gap-4">
-            <Link
-              href="/adopt"
-              className="bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 rounded-full font-medium transition"
+            <div
+         
+              className="bg-orange-600 hover:bg-orange-700 
+              text-white px-6 py-3 rounded-full font-medium transition"
             >
               Adopt Now
-            </Link>
+            </div>
 
-            <Link
-              href="/donate"
-              className="bg-gray-900 hover:bg-black text-white px-6 py-3 rounded-full font-medium transition"
+            <div
+            
+              className="bg-gray-900 hover:bg-black 
+              text-white px-6 py-3 rounded-full font-medium transition"
             >
               Donate
-            </Link>
+            </div>
           </div>
 
         </div>

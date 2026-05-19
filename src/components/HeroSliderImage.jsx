@@ -5,10 +5,9 @@ import Image from "next/image";
 
 const images = [
   "/asset/banner1.jpg",
-  "/asset/banner2.webp",
-  "/asset/banner3.jpg",
-  "/asset/banner4.webp",
-  "/asset/banner5.jpg",
+  "/asset/banner2.jpg",
+  "/asset/tom.jpg",
+
 ];
 
 const HeroSliderImage = () => {
@@ -29,17 +28,20 @@ const HeroSliderImage = () => {
   }, []);
 
   return (
-    <div className="relative w-full h-[500px] lg:h-[600px] rounded-3xl overflow-hidden shadow-2xl border border-white/10">
+    <div className="relative w-full h-[500px] lg:h-[600px] rounded-3xl 
+    overflow-hidden shadow-2xl border border-white/10">
 
       {/* glow overlay (premium look) */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 z-10"></div>
+      <div className="absolute inset-0 bg-gradient-to-t
+       from-black/60 via-transparent to-black/20 z-10"></div>
 
       <Image
         src={images[index]}
         alt="pet banner"
         fill
         priority
-        className={`object-cover scale-110 transition-all duration-700 ease-in-out ${
+        className={`object-cover scale-110 
+        transition-all duration-700 ease-in-out ${
           fade ? "opacity-100" : "opacity-0"
         }`}
       />
