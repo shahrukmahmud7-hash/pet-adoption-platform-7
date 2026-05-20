@@ -120,30 +120,40 @@ const handleLogout = async () => {
           )}
 
           {/* USER */}
-          {user && (
-            <div className="relative">
+        {user && (
+        <div className="relative">
 
-              <button onClick={() => setDropdown(!dropdown)}>
-                <Avatar>
-                  <Avatar.Image src={user?.image} />
-                  <Avatar.Fallback>
-                    {user?.name?.charAt(0)}
-                  </Avatar.Fallback>
-                </Avatar>
-              </button>
+        <button
+          onClick={() => setDropdown(!dropdown)}
+           className="flex items-center gap-2"
+          >
+        <Avatar>
+        <Avatar.Image src={user?.image} />
+        <Avatar.Fallback>
+          {user?.name?.charAt(0)}
+         </Avatar.Fallback>
+      </Avatar>
+
+         <span className="hidden md:block font-medium">
+        {user?.name}
+       </span>
+     </button>
 
               {dropdown && (
                 <div className="absolute right-0 mt-2 w-40 bg-white
                  dark:bg-gray-900 shadow-lg rounded-lg overflow-hidden
                  ">
 
-                  <button
-                    onClick={() => router.push("/dashboard/my-requests")}
-                    className="w-full text-left px-4 py-2 hover:bg-gray-100
-                     dark:hover:bg-gray-800"
+                 <button
+                  onClick={() => {
+                   setDropdown(false);
+                  router.push("/dashboard/my-requests");
+             }}
+                className="w-full text-left px-4 py-2 hover:bg-gray-100
+                 dark:hover:bg-gray-800"
                   >
-                    Dashboard
-                  </button>
+                  Dashboard
+            </button>
 
                   <button
                     onClick={handleLogout}

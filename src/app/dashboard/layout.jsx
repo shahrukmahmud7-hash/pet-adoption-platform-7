@@ -12,7 +12,6 @@ const DashboardLayout = ({ children }) => {
   const [isOpenSidebar, setIsOpenSidebar] = useState(false);
 
   const { data: session, isPending } = authClient.useSession();
-
   const user = session?.user;
 
   useEffect(() => {
@@ -36,13 +35,15 @@ const DashboardLayout = ({ children }) => {
   ];
 
   return (
+
     <div className="flex min-h-screen">
 
       {/* MOBILE NAV */}
-      <div className="md:hidden fixed top-0 left-0 w-full bg-slate-900
-       text-white p-4 flex justify-between z-50">
+      <div className="md:hidden fixed top-0 left-0 w-full
+       bg-slate-900 text-white p-4 flex justify-between z-50
+       ">
         <h2 className="font-bold">Dashboard</h2>
-
+        
         <button onClick={() => setIsOpenSidebar(true)}>
           ☰
         </button>
@@ -53,11 +54,13 @@ const DashboardLayout = ({ children }) => {
         className={`
           fixed md:static top-0 left-0 z-50
           h-screen w-72 bg-slate-900 text-white p-5
+          flex flex-col
           transition-transform duration-300
           ${isOpenSidebar ? "translate-x-0" : "-translate-x-full"}
           md:translate-x-0
         `}
       >
+        {/* HEADER */}
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold">
             Dashboard
@@ -71,6 +74,7 @@ const DashboardLayout = ({ children }) => {
           </button>
         </div>
 
+        {/* MENU (TOP) */}
         <div className="flex flex-col gap-2">
           {menu.map((item) => (
             <Link
@@ -86,6 +90,19 @@ const DashboardLayout = ({ children }) => {
               {item.name}
             </Link>
           ))}
+        </div>
+
+        {/* BOTTOM CARD (FIXED BOTTOM) */}
+        <div className="mt-auto pt-4 border-t border-white/10">
+          <div className="bg-white/5 rounded-xl p-4 text-center">
+            <h3 className="font-semibold text-emerald-400">
+              PetWorld
+            </h3>
+
+            <p className="text-sm text-red-300 mt-1">
+              Caring for every paw 🐾
+            </p>
+          </div>
         </div>
       </aside>
 
@@ -103,5 +120,6 @@ const DashboardLayout = ({ children }) => {
       </main>
     </div>
   );
-}
-export default DashboardLayout ;
+};
+
+export default DashboardLayout; 
