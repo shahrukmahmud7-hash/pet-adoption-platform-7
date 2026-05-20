@@ -14,52 +14,51 @@ import Link from "next/link";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { toast } from "react-toastify";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 
 const RegisterPage = () => {
   const router = useRouter();
 
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirm, setShowConfirm] = useState(false);
+  const [isOpenPassword, setIsOpenPassword] = useState(false);
+  const [isOpenConfirm, setIsOpenConfirm] = useState(false);
 
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [isPassword, setIsPassword] = useState("");
+  const [isConfirmPassword, setIsConfirmPassword] = useState("");
 
   const onSubmit = async (e) => {
     e.preventDefault();
 
   const formData = new FormData(e.currentTarget);
-const user = Object.fromEntries(formData.entries());
+  const user = Object.fromEntries(formData.entries());
 
-const { name, email, photo } = user;
-
+  const { name, email, image } = user;
     // 🔴 validation
-    if (password.length < 6) {
+    if (isPassword.length < 6) {
       return toast.error("Password must be at least 6 characters");
     }
-    if (!/[A-Z]/.test(password)) {
+    if (!/[A-Z]/.test(isPassword)) {
       return toast.error("Password must have 1 uppercase letter");
     }
-    if (!/[a-z]/.test(password)) {
+    if (!/[a-z]/.test(isPassword)) {
       return toast.error("Password must have 1 lowercase letter");
     }
-
-    if (password !== confirmPassword) {
+    if (isPassword !== isConfirmPassword) {
       return toast.error("Passwords do not match");
     }
-
+  console.log({email , isPassword , image , name});
     const { data, error } = await authClient.signUp.email({
-      name,
+  
       email,
-      password,
-      photoURL: photo,
+      password: isPassword,
+      image,
+      name
     });
 
     if (error) {
       toast.error(error.message);
     } else {
       toast.success("Registration successful");
-      router.push("/login");
+      redirect("/login");
     }
   };
 
@@ -83,10 +82,10 @@ const { name, email, photo } = user;
           <FieldError />
         </TextField>
 
-        {/* Photo */}
-        <TextField isRequired name="photo">
-          <Label>Photo URL</Label>
-          <Input name="photo" placeholder="Enter photo URL" />
+        {/* Image URL */}
+        <TextField isRequired name="image">
+          <Label>Image URL</Label>
+          <Input name="image" placeholder="Enter image URL" />
           <FieldError />
         </TextField>
 
@@ -96,18 +95,18 @@ const { name, email, photo } = user;
             <Label>Password</Label>
             <Input
               name="password"
-              type={showPassword ? "text" : "password"}
+              type={isOpenPassword ? "text" : "password"}
               placeholder="Enter password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={isPassword}
+              onChange={(e) => setIsPassword(e.target.value)}
               className="pr-10"
             />
 
             <span
               className="absolute right-3 top-9 cursor-pointer"
-              onClick={() => setShowPassword(!showPassword)}
+              onClick={() => setIsOpenPassword(!isOpenPassword)}
             >
-              {showPassword ? <FaEye /> : <FaEyeSlash />}
+              {isOpenPassword ? <FaEye /> : <FaEyeSlash />}
             </span>
 
             <Description>
@@ -124,18 +123,18 @@ const { name, email, photo } = user;
             <Label>Confirm Password</Label>
             <Input
               name="confirmPassword"
-              type={showConfirm ? "text" : "password"}
+              type={isOpenConfirm ? "text" : "password"}
               placeholder="Confirm password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
+              value={isConfirmPassword}
+              onChange={(e) => setIsConfirmPassword(e.target.value)}
               className="pr-10"
             />
 
             <span
               className="absolute right-3 top-9 cursor-pointer"
-              onClick={() => setShowConfirm(!showConfirm)}
+              onClick={() => setIsOpenConfirm(!isOpenConfirm)}
             >
-              {showConfirm ? <FaEye /> : <FaEyeSlash />}
+              {isOpenConfirm ? <FaEye /> : <FaEyeSlash />}
             </span>
 
             <FieldError />
@@ -143,7 +142,9 @@ const { name, email, photo } = user;
         </div>
 
         {/* Button */}
-        <button className="w-full bg-blue-500 hover:bg-blue-600 transition p-2 rounded-full text-white font-medium">
+        <button className="w-full bg-blue-500 hover:bg-blue-600 
+          transition p-2 rounded-full text-white font-medium
+        ">
           Register
         </button>
       </Form>

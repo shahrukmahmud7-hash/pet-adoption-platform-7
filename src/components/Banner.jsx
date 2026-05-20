@@ -6,7 +6,7 @@ import Link from "next/link";
 const PetHero = () => {
   return (
     <div className="w-full bg-[#FFF8F3] 
-     rounded-2xl p-10 shadow-lg border border-gray-200">
+      p-10 border border-gray-100">
 
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 
       lg:grid-cols-2 gap-10 items-center">

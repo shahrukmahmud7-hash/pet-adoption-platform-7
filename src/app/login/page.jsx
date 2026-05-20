@@ -11,8 +11,8 @@ import { toast } from "react-toastify";
 
 const LogInPage = () => {
 
-  //  const searchParams = useSearchParams();
-  //  const redirect = searchParams.get("redirect") || "/";
+   const searchParams = useSearchParams();
+   const redirect = searchParams.get("redirect") || "/";
 
    const onSubmit = async(e) =>{
       e.preventDefault()
@@ -37,10 +37,10 @@ const LogInPage = () => {
 
     const handleGooleLogin = async () => {
 
-  //      const {data , error} = await authClient.signIn.social({
-  //       provider: "google",
-  //       callbackURL: redirect,
-  // });
+       const {data , error} = await authClient.signIn.social({
+        provider: "google",
+        // callbackURL: redirect,
+  });
         console.log(data , 'data');
          if (error) {
         toast.error ("Google login failed");
