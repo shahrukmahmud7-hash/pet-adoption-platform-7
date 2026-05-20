@@ -2,9 +2,10 @@ import CardPage from "./Card";
 
 
 const HomePageCard = async () => {
-  const res = await fetch("http://localhost:8000/pet", {
-    cache: "no-store",
-  });
+  const res = await fetch("http://localhost:8000/pets")
+//   , {
+//     cache: "no-store",
+//   });
 
   const pets = await res.json();
 
