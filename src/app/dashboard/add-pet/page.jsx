@@ -6,35 +6,30 @@ import { Card, FieldError, Input, Label, TextField, Select, ListBox, TextArea, B
 
 
 
-
-
 const AddPetPage = () => {
 
-// const onSubmit = async (e)=>{
-//    e.preventDefault()
-//    const formData = new FormData(e.currentTarget);
-//    const pet = Object.fromEntries(formData.entries());
+const onSubmit = async (e)=>{
+   e.preventDefault()
+   const formData = new FormData(e.currentTarget);
+   const pet = Object.fromEntries(formData.entries());
 
-//   //  console.log(pet , "pet");
-    
-//    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URI}/pet`,{
-//     method: 'POST',
-//     headers : {
-//       'content-type' : 'application/json'
-//     },
-//     body: JSON.stringify(pet)
+   console.log(pet , "pet")
 
-//    })
-//    const data = await res.json()
-//    console.log(data);
+   const res = await fetch('http://localhost:8000/pet', {
+    method : "POST",
+    headers : {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(pet)
+  });
 
-
-
-// }
+  const data = await res.json();
+  console.log(data);
+};
 
   return (
-<div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-  <div className="w-full max-w-4xl">
+     <div className="max-w-4xl mx-auto bg-gray-50 flex items-center justify-center p-4">
+     <div className="w-full max-w-4xl">
 
     {/* Header */}
     <div className="mb-6 text-center">
@@ -47,7 +42,8 @@ const AddPetPage = () => {
     </div>
 
     <Card className="shadow-md rounded-2xl bg-white">
-      <form className="p-6 space-y-5">
+      <form onSubmit={onSubmit}
+      className="p-6 space-y-5">
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
 
@@ -61,7 +57,7 @@ const AddPetPage = () => {
           {/* Species */}
           <div>
                 <Select
-                  name="Species"
+                  name="species"
                   isRequired
                   className="w-full"
                   placeholder="Select species"
@@ -73,27 +69,27 @@ const AddPetPage = () => {
                   </Select.Trigger>
                   <Select.Popover>
                     <ListBox>
-                      <ListBox.Item id="Beach" textValue="Beach">
+                      <ListBox.Item id="Dog" textValue="Dog">
                         Dog 
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
-                      <ListBox.Item id="Mountain" textValue="Mountain">
+                      <ListBox.Item id="Cat" textValue="Cat">
                         Cat
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
-                      <ListBox.Item id="City" textValue="City">
+                      <ListBox.Item id="Bird" textValue="Bird">
                         Bird
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
-                      <ListBox.Item id="Adventure" textValue="Adventure">
+                      <ListBox.Item id="Rabbit" textValue="Rabbit">
                         Rabbit
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
-                      <ListBox.Item id="Cultural" textValue="Cultural">
+                      <ListBox.Item id="Guinea Pig" textValue="Guinea Pig">
                          Guinea Pig   
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
-                      <ListBox.Item id="Luxury" textValue="Luxury">
+                      <ListBox.Item id="Hamster" textValue="Hamster">
                         Hamster
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
@@ -104,7 +100,7 @@ const AddPetPage = () => {
 
           {/* Breed */}
              <TextField name="breed" isRequired>
-                <Label>Country</Label>
+                <Label>Breed</Label>
                 <Input placeholder="breed" className="rounded-2xl" />
                 <FieldError />
               </TextField>
@@ -130,15 +126,15 @@ const AddPetPage = () => {
                   </Select.Trigger>
                   <Select.Popover>
                     <ListBox>
-                      <ListBox.Item id="Adventure" textValue="Adventure">
+                      <ListBox.Item id="Male" textValue="Male">
                         Male
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
-                      <ListBox.Item id="Cultural" textValue="Cultural">
+                      <ListBox.Item id="Female" textValue="Female">
                          Female  
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
-                      <ListBox.Item id="Luxury" textValue="Luxury">
+                      <ListBox.Item id="Unknown" textValue="Unknown">
                         Unknown
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
@@ -168,19 +164,19 @@ const AddPetPage = () => {
                   </Select.Trigger>
                   <Select.Popover>
                     <ListBox>
-                      <ListBox.Item id="Adventure" textValue="Adventure">
+                      <ListBox.Item id="Healthy" textValue="Healthy">
                         Healthy
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
-                      <ListBox.Item id="Adventure" textValue="Adventure">
+                      <ListBox.Item id="Minor Issues" textValue="Minor Issues">
                         Minor Issues
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
-                      <ListBox.Item id="Cultural" textValue="Cultural">
-                         Under Treatment
+                      <ListBox.Item id="Under Treatment" textValue="Under Treatment">
+                        Under Treatment
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
-                      <ListBox.Item id="Luxury" textValue="Luxury">
+                      <ListBox.Item id="Critical" textValue="Critical">
                         Critical
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
@@ -205,19 +201,19 @@ const AddPetPage = () => {
                   </Select.Trigger>
                   <Select.Popover>
                     <ListBox>
-                      <ListBox.Item id="Adventure" textValue="Adventure">
+                      <ListBox.Item id="Fully Vaccinated" textValue="Fully Vaccinated">
                         Fully Vaccinated
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
-                      <ListBox.Item id="Adventure" textValue="Adventure">
+                      <ListBox.Item id="Partially Vaccinated" textValue="Partially Vaccinated">
                         Partially Vaccinated
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
-                      <ListBox.Item id="Cultural" textValue="Cultural">
+                      <ListBox.Item id="Not Vaccinated" textValue="Not Vaccinated">
                          Not Vaccinated
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
-                      <ListBox.Item id="Luxury" textValue="Luxury">
+                      <ListBox.Item id="Unknown" textValue="Unknown">
                         Unknown
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
@@ -229,7 +225,7 @@ const AddPetPage = () => {
           {/* Location */}
           <TextField name="location" isRequired>
             <Label className="text-sm text-gray-600">Location</Label>
-            <Input className="rounded-xl h-10" placeholder="Rajshahi, Bangladesh" />
+            <Input className="rounded-xl h-10" placeholder="Dhaka, Bangladesh" />
           </TextField>
 
           {/* Owner Email */}
@@ -269,7 +265,6 @@ const AddPetPage = () => {
 
         {/* Buttons */}
         <div className="flex gap-4 pt-3">
-
           <Button
             type="button"
             className="w-full h-10 rounded-xl bg-gray-200
@@ -285,12 +280,10 @@ const AddPetPage = () => {
           >
             Add Pet
           </Button>
-
         </div>
 
       </form>
     </Card>
-
   </div>
 </div>
 

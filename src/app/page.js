@@ -1,4 +1,5 @@
 import PetBanner from "@/components/Banner";
+import HomePageCard from "@/components/HomePageCard";
 import HowAdoptionWorks from "@/components/HowAdoptionWorks";
 import OurMission from "@/components/OurMission";
 import PetCareTips from "@/components/PetCareTips";
@@ -10,7 +11,7 @@ export default function Home() {
   return (
     <div>
      <PetBanner/>
-        Home page
+      <HomePageCard/>
      <WhyAdoptPets/>
      <SuccessStoriesPage/>
      <PetCareTips/>
