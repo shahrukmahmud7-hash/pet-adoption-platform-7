@@ -1,7 +1,7 @@
 "use client";
 import { authClient } from "@/lib/auth-client";
 import {Check} from "@gravity-ui/icons";
-import { Button, Card, Description, FieldError, Form, Input, Label, TextField } from "@heroui/react";
+import { Button, Card, Description, FieldError, Form, Input, Label, Separator, TextField } from "@heroui/react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
@@ -107,9 +107,12 @@ const LogInPage = () => {
       </div>
     </Form>
         <div className="flex items-center">
-          <hr className="flex-1" />
-        <span className="px-2 text-sm">OR</span>
-          <hr className="flex-1" />
+           <Separator className="flex-1" />
+           <div className="whitespace-nowrap">
+                  Or sign up with
+          </div>
+        <Separator className="flex-1" />
+        
      </div>
       <Button variant="outline" className="w-full " onClick={handleGooleLogin}
       >

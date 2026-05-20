@@ -39,6 +39,22 @@ const nextConfig = {
         protocol: "https",
         hostname: "a-z-animals.com",
       },
+      {
+        protocol: "https",
+        hostname: "www.revivalanimal.com",
+      },
+      {
+        protocol: "https",
+        hostname: "t4.ftcdn.net",
+      },
+      {
+        protocol: "https",
+        hostname: "cdn.shopify.com",
+      },
+      {
+        protocol: "https",
+        hostname: "pet-health-content-media.chewy.com",
+      },
     ],
   },
   reactCompiler: true,

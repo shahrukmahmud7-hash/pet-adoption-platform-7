@@ -2,12 +2,14 @@
 
 import { authClient } from "@/lib/auth-client";
 import {
+  Button,
   Card,
   Description,
   FieldError,
   Form,
   Input,
   Label,
+  Separator,
   TextField,
 } from "@heroui/react";
 import Link from "next/link";
@@ -15,6 +17,7 @@ import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { redirect, useRouter } from "next/navigation";
+import { FcGoogle } from "react-icons/fc";
 
 const RegisterPage = () => {
   const router = useRouter();
@@ -62,10 +65,28 @@ const RegisterPage = () => {
     }
   };
 
-  return (
-    <Card className="mx-auto max-w-md w-full p-8 mt-10 rounded-2xl shadow-lg">
-      <h1 className="text-center text-2xl font-bold">Register</h1>
+   const handleGooleLogin = async () => {
+  
+         const {data , error} = await authClient.signIn.social({
+          provider: "google",
+          // callbackURL: redirect,
+    });
+          console.log(data , 'data');
+           if (error) {
+          toast.error ("Google login failed");
+        } else {
+         toast.success ('Login succesfull');
+      
+        }
+      } 
 
+
+  return (
+    <Card className="mx-auto max-w-md w-full p-8 mt-10 rounded-2xl shadow-lg mb-8">
+      <h1 className="text-center text-2xl font-bold text-gray-800">Create your account</h1>
+       <p className="text-center text-sm text-gray-600">
+         Join our community and find your perfect pet companion.
+       </p>
       <Form onSubmit={onSubmit} className="flex flex-col gap-4 mt-4">
 
         {/* Name */}
@@ -145,10 +166,22 @@ const RegisterPage = () => {
         <button className="w-full bg-blue-500 hover:bg-blue-600 
           transition p-2 rounded-full text-white font-medium
         ">
-          Register
+          Create Account
         </button>
+         <div className="flex justify-center items-center gap-3">
+      <Separator className="flex-1" />
+      <div className="whitespace-nowrap">
+        Or sign up with
+      </div>
+      <Separator className="flex-1" />
+    </div>
+         <div>
+       <Button onClick={handleGooleLogin}  variant="outline" className={'w-full rounded-full'}>
+       <FcGoogle /> Sign Up With Google
+       </Button>
+       
+    </div>
       </Form>
-
       <p className="text-center text-sm mt-4">
         Already have an account?{" "}
         <Link href="/login" className="text-orange-500">
