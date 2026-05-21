@@ -1,3 +1,4 @@
+import { Separator } from "@heroui/react";
 import Image from "next/image";
 
 const CardPage = ({ pet }) => {
@@ -31,10 +32,10 @@ const CardPage = ({ pet }) => {
           {location}
         </p>
 
-        <p className="text-pink-600 font-semibold">
+        <p className="text-gray-300 font-semibold">
           ${adoptionFee} Adoption Fee
         </p>
-
+         <Separator/>
         {/* Buttons */}
         <div className="flex gap-3 pt-3">
           <button className="flex-1 text-white border border-gray-300 py-2 rounded-xl hover:bg-black transition">

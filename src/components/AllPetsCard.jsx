@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { Separator } from "@heroui/react";
 
 
 const AllPetsCard = ({ pet }) => {
@@ -31,11 +32,10 @@ const AllPetsCard = ({ pet }) => {
              <p className="text-gray-500 text-sm">
                {location}
              </p>
-     
              <p className="text-pink-600 font-semibold">
                ${adoptionFee} Adoption Fee
              </p>
-     
+                   <Separator/>
              {/* Buttons */}
           <div className="flex gap-3 pt-3">
             <Link
