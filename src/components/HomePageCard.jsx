@@ -10,7 +10,7 @@ const HomePageCard = async () => {
   const pets = await res.json();
 
   return (
-    <div className=" max-w-11/12 mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div className=" bg-[#FFF8F3]  max-w-11/12 mx-auto px-4 sm:px-6 lg:px-8 py-10">
 
       {/* Header Section */}
       <div className="text-center mb-10">

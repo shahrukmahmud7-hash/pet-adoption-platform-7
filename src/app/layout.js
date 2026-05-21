@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ThemeProvider from "@/components/ThemeProvider";
+import { ToastContainer } from "react-toastify";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,18 +26,15 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} transition-colors duration-300 bg-white dark:bg-black dark:text-white`}
       >
-        {/* 🌙 DARK MODE PROVIDER WRAP START */}
+     
         <ThemeProvider>
-          {/* NAVBAR */}
+  
           <Navbar />
-
-          {/* PAGE CONTENT */}
           {children}
-
-          {/* FOOTER */}
           <Footer />
+           <ToastContainer position="top-right" />
         </ThemeProvider>
-        {/* 🌙 DARK MODE PROVIDER WRAP END */}
+       
       </body>
     </html>
   );
