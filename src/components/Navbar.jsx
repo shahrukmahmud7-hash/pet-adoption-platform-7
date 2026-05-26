@@ -13,12 +13,10 @@ import { IoSearchOutline } from "react-icons/io5";
 import { Moon, Sun } from "lucide-react";
 
 const Navbar = () => {
-
   const pathname = usePathname();
   const router = useRouter();
   const [dropdown, setDropdown] = useState(false);
 
-  
   const { data: session } = authClient.useSession();
   const user = session?.user;
 
@@ -30,7 +28,7 @@ const Navbar = () => {
 
     if (saved === "dark") {
       document.documentElement.classList.add("dark");
-      setDark(true);
+      // setDark(true);
     }
   }, []);
 
@@ -46,11 +44,11 @@ const Navbar = () => {
     }
   };
 
-const handleLogout = async () => {
-  await authClient.signOut();
-  setDropdown(false);
-  router.push("/");
-};
+  const handleLogout = async () => {
+    await authClient.signOut();
+    setDropdown(false);
+    router.push("/");
+  };
 
   const linkStyle = (path) =>
     pathname === path
@@ -58,17 +56,14 @@ const handleLogout = async () => {
       : "flex items-center gap-2 text-gray-600 hover:text-emerald-600";
 
   return (
-    <nav className="border-b sticky top-0 z-50 bg-white dark:bg-black
-     dark:text-white shadow-sm transition-colors duration-300">
-
+    <nav
+      className={`border-b sticky top-0 z-40  shadow-sm transition-colors duration-300 ${session?.user ? "bg-slate-900" : "bg-white dark:bg-black dark:text-white"}`}
+    >
       <nav className="flex items-center justify-between max-w-7xl mx-auto p-3">
-
         {/* LEFT - LOGO */}
-        <div className="flex items-center gap-2">
-          <Image src={petLogo} alt="logo" width={45} height={45} />
-          <h2 className="font-bold text-xl text-emerald-700">
-            PetWorld
-          </h2>
+        <div className="flex items-center gap-2 ">
+          <Image src={petLogo} alt="logo" width={45} height={45} className="rounded-full" />
+          <h2 className="font-bold text-xl text-emerald-700">PetWorld</h2>
         </div>
 
         {/* CENTER MENU */}
@@ -86,7 +81,6 @@ const handleLogout = async () => {
 
         {/* RIGHT SIDE */}
         <div className="flex items-center gap-4">
-
           {/* DARK MODE TOGGLE */}
           <button
             onClick={toggleTheme}
@@ -120,40 +114,38 @@ const handleLogout = async () => {
           )}
 
           {/* USER */}
-        {user && (
-        <div className="relative">
+          {user && (
+            <div className="relative">
+              <button
+                onClick={() => setDropdown(!dropdown)}
+                className="flex items-center gap-2"
+              >
+                <Avatar>
+                  <Avatar.Image src={user?.image} />
+                  <Avatar.Fallback>{user?.name?.charAt(0)}</Avatar.Fallback>
+                </Avatar>
 
-        <button
-          onClick={() => setDropdown(!dropdown)}
-           className="flex items-center gap-2"
-          >
-        <Avatar>
-        <Avatar.Image src={user?.image} />
-        <Avatar.Fallback>
-          {user?.name?.charAt(0)}
-         </Avatar.Fallback>
-      </Avatar>
-
-         <span className="hidden md:block font-medium">
-        {user?.name}
-       </span>
-     </button>
+                <span className="hidden md:block font-medium">
+                  {user?.name}
+                </span>
+              </button>
 
               {dropdown && (
-                <div className="absolute right-0 mt-2 w-40 bg-white
+                <div
+                  className="absolute right-0 mt-2 w-40 bg-white
                  dark:bg-gray-900 shadow-lg rounded-lg overflow-hidden
-                 ">
-
-                 <button
-                  onClick={() => {
-                   setDropdown(false);
-                  router.push("/dashboard/my-requests");
-             }}
-                className="w-full text-left px-4 py-2 hover:bg-gray-100
+                 "
+                >
+                  <button
+                    onClick={() => {
+                      setDropdown(false);
+                      router.push("/dashboard/my-requests");
+                    }}
+                    className="w-full text-left px-4 py-2 hover:bg-gray-100
                  dark:hover:bg-gray-800"
                   >
-                  Dashboard
-            </button>
+                    Dashboard
+                  </button>
 
                   <button
                     onClick={handleLogout}
@@ -162,17 +154,14 @@ const handleLogout = async () => {
                   >
                     Logout
                   </button>
-
                 </div>
               )}
-
             </div>
           )}
-
         </div>
       </nav>
     </nav>
   );
 };
 
-export default Navbar; 
+export default Navbar;

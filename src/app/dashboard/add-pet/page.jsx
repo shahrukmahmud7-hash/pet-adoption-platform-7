@@ -1,5 +1,6 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import {
   Card,
   FieldError,
@@ -13,25 +14,43 @@ import {
 } from "@heroui/react";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 const AddPetPage = () => {
+  const [formData, setFormData] = useState({
+    petName: "",
+    species: "",
+    description: "",
+    imageUrl: "",
+    age: "",
+    gender: "",
+    location: "",
+    adoptionFee: "",
+    vaccinationStatus: "",
+    healthStatus: "",
+    breed: "",
+    ownerEmail: "",
+  });
+
+  const { data: session } = authClient.useSession();
+  const user = session?.user;
   const router = useRouter();
   const searchParams = useSearchParams();
 
   const editId = searchParams.get("edit");
-
 
   useEffect(() => {
     if (editId) {
       fetch(`http://localhost:8000/pet/${editId}`)
         .then((res) => res.json())
         .then((data) => {
-          Object.keys(data).forEach((key) => {
-            const el = document.querySelector(`[name="${key}"]`);
-            if (el) el.value = data[key];
-          });
+          console.log(data);
+          setFormData(data);
+          // Object.keys(data).forEach((key) => {
+          //   const el = document.querySelector(`[name="${key}"]`);
+          //   if (el) el.value = data[key];
+          // });
         });
     }
   }, [editId]);
@@ -44,7 +63,6 @@ const AddPetPage = () => {
 
     let url = "http://localhost:8000/pet";
     let method = "POST";
-
 
     if (editId) {
       url = `http://localhost:8000/edit/${editId}`;
@@ -60,7 +78,9 @@ const AddPetPage = () => {
     });
 
     if (res.ok) {
-      toast.success(editId ? "Pet updated successfully!" : "Pet added successfully!");
+      toast.success(
+        editId ? "Pet updated successfully!" : "Pet added successfully!",
+      );
       router.push("/dashboard/my-listings");
     } else {
       toast.error("Something went wrong!");
@@ -70,7 +90,6 @@ const AddPetPage = () => {
   return (
     <div className="max-w-4xl mx-auto bg-gray-50 flex items-center justify-center p-4">
       <div className="w-full max-w-4xl">
-
         {/* Header */}
         <div className="mb-6 text-center">
           <h1 className="text-2xl font-bold text-gray-800">
@@ -83,18 +102,33 @@ const AddPetPage = () => {
 
         <Card className="shadow-md rounded-2xl bg-white">
           <form onSubmit={onSubmit} className="p-6 space-y-5">
-
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-
               {/* Pet Name */}
-                  <TextField name="petName" isRequired>
+              <TextField name="petName" isRequired>
                 <Label>Pet Name</Label>
-                <Input placeholder="Buddy" className="rounded-2xl" />
+                <Input
+                  value={formData.petName || ""}
+                  onChange={(e) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      petName: e.target.value,
+                    }))
+                  }
+                  placeholder="Buddy"
+                  className="rounded-2xl"
+                />
                 <FieldError />
               </TextField>
-                   
-                    <div>
+
+              <div>
                 <Select
+                  // value={formData.species || ""}
+                  onChange={(e) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      species: e,
+                    }))
+                  }
                   name="species"
                   isRequired
                   className="w-full"
@@ -138,26 +172,53 @@ const AddPetPage = () => {
 
               {/* Breed */}
 
-                 <TextField name="breed" isRequired>
+              <TextField name="breed" isRequired>
                 <Label>Breed</Label>
-                <Input placeholder="Golden Retriever" className="rounded-2xl" />
+                <Input
+                  value={formData.breed || ""}
+                  onChange={(e) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      breed: e.target.value,
+                    }))
+                  }
+                  placeholder="Golden Retriever"
+                  className="rounded-2xl"
+                />
                 <FieldError />
               </TextField>
 
               {/* Age */}
-                 <TextField name="age" isRequired>
+              <TextField name="age" isRequired>
                 <Label>Age</Label>
-                <Input type="number" placeholder="2" className="rounded-2xl" />
+                <Input
+                  value={formData.age || ""}
+                  onChange={(e) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      age: e.target.value,
+                    }))
+                  }
+                  type="number"
+                  placeholder="2"
+                  className="rounded-2xl"
+                />
                 <FieldError />
               </TextField>
 
-
-             <div>
+              <div>
                 <Select
                   name="gender"
                   isRequired
                   className="w-full"
                   placeholder="Select gender"
+                  value={formData.gender || ""}
+                  onChange={(e) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      gender: e,
+                    }))
+                  }
                 >
                   <Label>Gender</Label>
                   <Select.Trigger className="rounded-2xl">
@@ -184,16 +245,33 @@ const AddPetPage = () => {
               </div>
 
               {/* Adoption Fee */}
-                <TextField name="adoptionFee" isRequired>
+              <TextField name="adoptionFee" isRequired>
                 <Label>Adoption Fee</Label>
-                <Input type="number" placeholder="0" className="rounded-2xl" />
+                <Input
+                  value={formData.adoptionFee || ""}
+                  onChange={(e) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      adoptionFee: e.target.value,
+                    }))
+                  }
+                  type="number"
+                  placeholder="0"
+                  className="rounded-2xl"
+                />
                 <FieldError />
               </TextField>
-      
 
               {/* Health Status */}
-               <div>
+              <div>
                 <Select
+                  value={formData?.healthStatus || ""}
+                  onChange={(e) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      healthStatus: e,
+                    }))
+                  }
                   name="healthStatus"
                   isRequired
                   className="w-full"
@@ -222,17 +300,22 @@ const AddPetPage = () => {
                         Critical
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
-
                     </ListBox>
                   </Select.Popover>
                 </Select>
               </div>
-            
 
               {/* Vaccination */}
 
               <div>
                 <Select
+                  value={formData.vaccinationStatus || ""}
+                  onChange={(e) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      vaccinationStatus: e,
+                    }))
+                  }
                   name="vaccinationStatus"
                   isRequired
                   className="w-full"
@@ -245,15 +328,24 @@ const AddPetPage = () => {
                   </Select.Trigger>
                   <Select.Popover>
                     <ListBox>
-                      <ListBox.Item id="Fully Vaccinated" textValue="Fully Vaccinated">
+                      <ListBox.Item
+                        id="Fully Vaccinated"
+                        textValue="Fully Vaccinated"
+                      >
                         Fully Vaccinated
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
-                      <ListBox.Item id="Partially Vaccinated" textValue="Partially Vaccinated">
+                      <ListBox.Item
+                        id="Partially Vaccinated"
+                        textValue="Partially Vaccinated"
+                      >
                         Partially Vaccinated
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
-                      <ListBox.Item id="Not Vaccinated" textValue="Not Vaccinated">
+                      <ListBox.Item
+                        id="Not Vaccinated"
+                        textValue="Not Vaccinated"
+                      >
                         Not Vaccinated
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
@@ -261,27 +353,56 @@ const AddPetPage = () => {
                   </Select.Popover>
                 </Select>
               </div>
-              
 
               {/* Location */}
-               <TextField name="location" isRequired>
+              <TextField name="location" isRequired>
                 <Label>Location</Label>
-                <Input type="text" placeholder="Enter location" className="rounded-2xl" />
+                <Input
+                  value={formData.location || ""}
+                  onChange={(e) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      location: e.target.value,
+                    }))
+                  }
+                  type="text"
+                  placeholder="Enter location"
+                  className="rounded-2xl"
+                />
                 <FieldError />
               </TextField>
-      
 
               {/* Owner Email */}
-              <TextField name="ownerEmail" isReadOnly>
+              <TextField
+                value={formData.ownerEmail || ""}
+                onChange={(e) =>
+                  setFormData((prev) => ({
+                    ...prev,
+                    ownerEmail: e.target.value,
+                  }))
+                }
+                name="ownerEmail"
+                isReadOnly
+              >
                 <Label>Owner Email</Label>
-                <Input value="user@example.com" readOnly />
+                <Input value={user?.email} readOnly />
               </TextField>
 
               {/* Image */}
               <div className="md:col-span-2">
                 <TextField name="imageUrl" isRequired>
                   <Label>Image URL</Label>
-                  <Input type="url" className="rounded-xl h-10" />
+                  <Input
+                    value={formData.imageUrl || ""}
+                    onChange={(e) =>
+                      setFormData((prev) => ({
+                        ...prev,
+                        imageUrl: e.target.value,
+                      }))
+                    }
+                    type="url"
+                    className="rounded-xl h-10"
+                  />
                 </TextField>
               </div>
 
@@ -289,15 +410,22 @@ const AddPetPage = () => {
               <div className="md:col-span-2">
                 <TextField name="description" isRequired>
                   <Label>Description</Label>
-                  <TextArea className="rounded-xl min-h-[90px]" />
+                  <TextArea
+                    value={formData.description || ""}
+                    onChange={(e) =>
+                      setFormData((prev) => ({
+                        ...prev,
+                        description: e.target.value,
+                      }))
+                    }
+                    className="rounded-xl min-h-[90px]"
+                  />
                 </TextField>
               </div>
-
             </div>
 
             {/* Buttons */}
             <div className="flex gap-4 pt-3">
-
               <Button
                 type="button"
                 onClick={() => router.back()}
@@ -312,9 +440,7 @@ const AddPetPage = () => {
               >
                 {editId ? "Update Pet" : "Add Pet"}
               </Button>
-
             </div>
-
           </form>
         </Card>
       </div>
@@ -322,4 +448,4 @@ const AddPetPage = () => {
   );
 };
 
-export default AddPetPage; 
+export default AddPetPage;

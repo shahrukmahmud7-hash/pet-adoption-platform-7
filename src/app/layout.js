@@ -24,17 +24,14 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} transition-colors duration-300 bg-white dark:bg-black dark:text-white`}
+        className={`${geistSans.variable} ${geistMono.variable} transition-colors duration-300 bg-white dark:bg-black text-black`}
       >
-     
         <ThemeProvider>
-  
           <Navbar />
           {children}
           <Footer />
-           <ToastContainer position="top-right" />
+          <ToastContainer position="top-right" />
         </ThemeProvider>
-       
       </body>
     </html>
   );

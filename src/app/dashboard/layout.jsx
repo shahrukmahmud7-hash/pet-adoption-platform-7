@@ -35,24 +35,22 @@ const DashboardLayout = ({ children }) => {
   ];
 
   return (
-
     <div className="flex min-h-screen">
-
       {/* MOBILE NAV */}
-      <div className="md:hidden fixed top-0 left-0 w-full
-       bg-slate-900 text-white p-4 flex justify-between z-50
-       ">
+      <div
+        className="md:hidden fixed top-0 left-0 w-full
+       bg-slate-900 text-white p-4 flex justify-between z-50 py-6
+       "
+      >
         <h2 className="font-bold">Dashboard</h2>
-        
-        <button onClick={() => setIsOpenSidebar(true)}>
-          ☰
-        </button>
+
+        <button onClick={() => setIsOpenSidebar(true)}>☰</button>
       </div>
 
       {/* SIDEBAR */}
       <aside
         className={`
-          fixed md:static top-0 left-0 z-50
+          fixed  top-0 left-0 z-50
           h-screen w-72 bg-slate-900 text-white p-5
           flex flex-col
           transition-transform duration-300
@@ -62,14 +60,9 @@ const DashboardLayout = ({ children }) => {
       >
         {/* HEADER */}
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold">
-            Dashboard
-          </h2>
+          <h2 className="text-2xl font-bold">Dashboard</h2>
 
-          <button
-            className="md:hidden"
-            onClick={() => setIsOpenSidebar(false)}
-          >
+          <button className="md:hidden" onClick={() => setIsOpenSidebar(false)}>
             ✕
           </button>
         </div>
@@ -95,13 +88,9 @@ const DashboardLayout = ({ children }) => {
         {/* BOTTOM CARD (FIXED BOTTOM) */}
         <div className="mt-auto pt-4 border-t border-white/10">
           <div className="bg-white/5 rounded-xl p-4 text-center">
-            <h3 className="font-semibold text-emerald-400">
-              PetWorld
-            </h3>
+            <h3 className="font-semibold text-emerald-400">PetWorld</h3>
 
-            <p className="text-sm text-red-300 mt-1">
-              Caring for every paw 🐾
-            </p>
+            <p className="text-sm text-red-300 mt-1">Caring for every paw 🐾</p>
           </div>
         </div>
       </aside>
@@ -115,11 +104,9 @@ const DashboardLayout = ({ children }) => {
       )}
 
       {/* CONTENT */}
-      <main className="flex-1 p-5 mt-16 md:mt-0">
-        {children}
-      </main>
+      <main className="flex-1 p-5 mt-16 ml-0 lg:ml-72 md:mt-0">{children}</main>
     </div>
   );
 };
 
-export default DashboardLayout; 
+export default DashboardLayout;
