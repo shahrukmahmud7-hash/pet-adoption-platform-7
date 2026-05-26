@@ -42,7 +42,7 @@ const AddPetPage = () => {
 
   useEffect(() => {
     if (editId) {
-      fetch(`http://localhost:8000/pet/${editId}`)
+      fetch(`https://pet-adoption-server-7.vercel.app/pet/${editId}`)
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
@@ -61,11 +61,11 @@ const AddPetPage = () => {
     const formData = new FormData(e.currentTarget);
     const pet = Object.fromEntries(formData.entries());
 
-    let url = "http://localhost:8000/pet";
+    let url = "https://pet-adoption-server-7.vercel.app/pet";
     let method = "POST";
 
     if (editId) {
-      url = `http://localhost:8000/edit/${editId}`;
+      url = `https://pet-adoption-server-7.vercel.app/edit/${editId}`;
       method = "PATCH";
     }
 

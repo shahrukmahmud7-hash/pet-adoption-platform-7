@@ -13,7 +13,7 @@ const MyRequestPage = () => {
 
   useEffect(() => {
     const loadPets = async () => {
-      const res = await fetch("http://localhost:8000/my-request", {
+      const res = await fetch("https://pet-adoption-server-7.vercel.app/my-request", {
         method: "GET",
         headers: {
           Authorization: `Bearer ${session?.session?.token}`,
@@ -26,7 +26,7 @@ const MyRequestPage = () => {
   }, [session]);
 
   const handleCancelRequest = (petId) => {
-    fetch(`http://localhost:8000/cancel-request/${petId}`, {
+    fetch(`https://pet-adoption-server-7.vercel.app/cancel-request/${petId}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${session?.session?.token}`,

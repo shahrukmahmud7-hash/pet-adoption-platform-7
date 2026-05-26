@@ -9,7 +9,7 @@ const PetDetailsPage = async ({ params }) => {
   });
 
   const { id } = await params;
-  const res = await fetch(`http://localhost:8000/pet/${id}`);
+  const res = await fetch(`https://pet-adoption-server-7.vercel.app/pet/${id}`);
   const pets = await res.json();
 
   return <PetDetails pets={pets} session={session} />;

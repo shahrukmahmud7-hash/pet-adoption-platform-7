@@ -1,7 +1,7 @@
 import CardPage from "./Card";
 
 const HomePageCard = async () => {
-  const res = await fetch("http://localhost:8000/pets?limit=8");
+  const res = await fetch("https://pet-adoption-server-7.vercel.app/pets?limit=8");
   //   , {
   //     cache: "no-store",
   //   });

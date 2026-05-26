@@ -41,7 +41,7 @@ export default EditPets;
 //     console.log(updatedPet);
 
 //     // Example API update
-//     // await fetch(`http://localhost:8000/pet/${pet._id}`, {
+//     // await fetch(`https://pet-adoption-server-7.vercel.app/pet/${pet._id}`, {
 //     //   method: "PUT",
 //     //   headers: { "Content-Type": "application/json" },
 //     //   body: JSON.stringify(updatedPet),

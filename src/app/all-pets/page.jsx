@@ -22,7 +22,7 @@ const AllPetsPage = async ({ searchParams }) => {
     query.append("sort", sort);
   }
 
-  const res = await fetch(`http://localhost:8000/pets?${query.toString()}`, {
+  const res = await fetch(`https://pet-adoption-server-7.vercel.app/pets?${query.toString()}`, {
     cache: "no-store",
   });
 

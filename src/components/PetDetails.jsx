@@ -32,7 +32,7 @@ const PetDetails = ({ pets, session }) => {
       status: "Pending",
     };
 
-    const result = await fetch("http://localhost:8000/request-adopt", {
+    const result = await fetch("https://pet-adoption-server-7.vercel.app/request-adopt", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${session?.session?.token}`,

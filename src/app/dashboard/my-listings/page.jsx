@@ -17,7 +17,7 @@ const MyListingsPage = () => {
 
   useEffect(() => {
     const loadPets = async () => {
-      const res = await fetch("http://localhost:8000/my-listing", {
+      const res = await fetch("https://pet-adoption-server-7.vercel.app/my-listing", {
         method: "GET",
         headers: {
           Authorization: `Bearer ${session?.session?.token}`,
@@ -40,7 +40,7 @@ const MyListingsPage = () => {
       confirmButtonText: "Yes, delete it!",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const res = await fetch(`http://localhost:8000/pet/${id}`, {
+        const res = await fetch(`https://pet-adoption-server-7.vercel.app/pet/${id}`, {
           method: "DELETE",
         });
 

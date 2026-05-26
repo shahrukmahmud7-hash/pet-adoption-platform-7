@@ -13,7 +13,7 @@ const RequestModal = ({ requestId, setRequestModalId, setIsRefetch }) => {
 
   useEffect(() => {
     const loadRequest = async () => {
-      const res = await fetch(`http://localhost:8000/request/${requestId}`, {
+      const res = await fetch(`https://pet-adoption-server-7.vercel.app/request/${requestId}`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${session?.session?.token}`,
@@ -27,7 +27,7 @@ const RequestModal = ({ requestId, setRequestModalId, setIsRefetch }) => {
 
   const handleApprove = async (request) => {
     const res = await fetch(
-      `http://localhost:8000/request-update/${request?.petId}`,
+      `https://pet-adoption-server-7.vercel.app/request-update/${request?.petId}`,
 
       {
         method: "PATCH",
@@ -50,7 +50,7 @@ const RequestModal = ({ requestId, setRequestModalId, setIsRefetch }) => {
   };
   const handleReject = async (request) => {
     const res = await fetch(
-      `http://localhost:8000/request-update/${request?.petId}`,
+      `https://pet-adoption-server-7.vercel.app/request-update/${request?.petId}`,
 
       {
         method: "PATCH",
