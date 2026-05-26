@@ -7,6 +7,7 @@ const HomePageCard = async () => {
   //   });
 
   const pets = await res.json();
+  // const pets = data.data;
 
   return (
     <div className=" bg-[#FFF8F3] px-4 sm:px-6 lg:px-8 py-10">
